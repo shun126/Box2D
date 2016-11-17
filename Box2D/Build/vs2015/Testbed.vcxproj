@@ -214,6 +214,7 @@
     <ClInclude Include="..\..\Testbed\Tests\Breakable.h" />
     <ClInclude Include="..\..\Testbed\Tests\Bridge.h" />
     <ClInclude Include="..\..\Testbed\Tests\BulletTest.h" />
+    <ClInclude Include="..\..\Testbed\Tests\Buoyancy.h" />
     <ClInclude Include="..\..\Testbed\Tests\Cantilever.h" />
     <ClInclude Include="..\..\Testbed\Tests\Car.h" />
     <ClInclude Include="..\..\Testbed\Tests\Chain.h" />

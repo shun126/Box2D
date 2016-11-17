@@ -23,6 +23,7 @@
 #include <Box2D/Dynamics/Joints/b2PulleyJoint.h>
 #include <Box2D/Dynamics/Contacts/b2Contact.h>
 #include <Box2D/Dynamics/Contacts/b2ContactSolver.h>
+#include <Box2D/Dynamics/Controllers/b2Controller.h>
 #include <Box2D/Collision/b2Collision.h>
 #include <Box2D/Collision/b2BroadPhase.h>
 #include <Box2D/Collision/Shapes/b2CircleShape.h>
@@ -41,9 +42,11 @@ b2World::b2World(const b2Vec2& gravity)
 
 	m_bodyList = NULL;
 	m_jointList = NULL;
+	m_controllerList = NULL;
 
 	m_bodyCount = 0;
 	m_jointCount = 0;
+	m_controllerCount = 0;
 
 	m_warmStarting = true;
 	m_continuousPhysics = true;
@@ -164,6 +167,16 @@ void b2World::DestroyBody(b2Body* b)
 		m_contactManager.Destroy(ce0->contact);
 	}
 	b->m_contactList = NULL;
+
+	//Detach controllers attached to this body
+	b2ControllerEdge* te = b->m_controllerList;
+	while (te)
+	{
+		b2ControllerEdge* ce0 = te;
+		te = te->nextController;
+
+		ce0->controller->RemoveBody(b);
+	}
 
 	// Delete the attached fixtures. This destroys broad-phase proxies.
 	b2Fixture* f = b->m_fixtureList;
@@ -364,6 +377,32 @@ void b2World::DestroyJoint(b2Joint* j)
 	}
 }
 
+b2Controller* b2World::AddController(b2Controller* def)
+{
+	def->m_next = m_controllerList;
+	def->m_prev = NULL;
+	if (m_controllerList)
+		m_controllerList->m_prev = def;
+	m_controllerList = def;
+	++m_controllerCount;
+
+	def->m_world = this;
+
+	return def;
+}
+
+void b2World::RemoveController(b2Controller* controller)
+{
+	b2Assert(m_controllerCount>0);
+	if (controller->m_next)
+		controller->m_next->m_prev = controller->m_prev;
+	if (controller->m_prev)
+		controller->m_prev->m_next = controller->m_next;
+	if (controller == m_controllerList)
+		m_controllerList = controller->m_next;
+	--m_controllerCount;
+}
+
 //
 void b2World::SetAllowSleeping(bool flag)
 {
@@ -388,6 +427,12 @@ void b2World::Solve(const b2TimeStep& step)
 	m_profile.solveInit = 0.0f;
 	m_profile.solveVelocity = 0.0f;
 	m_profile.solvePosition = 0.0f;
+
+	// Step all controlls
+	for (b2Controller* controller = m_controllerList; controller; controller = controller->m_next)
+	{
+		controller->Step(step);
+	}
 
 	// Size the island for the worst case.
 	b2Island island(m_bodyCount,
@@ -1195,6 +1240,14 @@ void b2World::DrawDebugData()
 		for (b2Joint* j = m_jointList; j; j = j->GetNext())
 		{
 			DrawJoint(j);
+		}
+	}
+
+	if (flags & b2Draw::e_controllerBit)
+	{
+		for (b2Controller* c = m_controllerList; c; c = c->GetNext())
+		{
+			c->Draw(g_debugDraw);
 		}
 	}
 

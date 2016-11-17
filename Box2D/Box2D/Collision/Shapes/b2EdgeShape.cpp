@@ -136,3 +136,13 @@ void b2EdgeShape::ComputeMass(b2MassData* massData, float32 density) const
 	massData->center = 0.5f * (m_vertex1 + m_vertex2);
 	massData->I = 0.0f;
 }
+
+float32 b2EdgeShape::ComputeSubmergedArea(const b2Vec2& normal, const float32 offset, const float32 density, const b2Transform& transform, b2Vec2* c) const
+{
+	B2_NOT_USED(normal);
+	B2_NOT_USED(offset);
+	B2_NOT_USED(density);
+	B2_NOT_USED(transform);
+	B2_NOT_USED(c);
+	return 0;
+}

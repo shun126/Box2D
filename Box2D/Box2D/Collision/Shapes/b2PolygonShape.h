@@ -68,6 +68,9 @@ public:
 	/// @see b2Shape::ComputeMass
 	void ComputeMass(b2MassData* massData, float32 density) const;
 
+	/// @see b2Shape::ComputeSubmergedArea
+	float32 ComputeSubmergedArea(const b2Vec2& normal, const float32 offset, const float32 density, const b2Transform& transform, b2Vec2* c) const;
+
 	/// Get the vertex count.
 	int32 GetVertexCount() const { return m_count; }
 

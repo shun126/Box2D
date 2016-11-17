@@ -19,6 +19,9 @@
     <Filter Include="Dynamics\Joints">
       <UniqueIdentifier>{CFBD1F37-CEEA-CA41-9715-5C0ACDD84298}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Dynamics\Controllers">
+      <UniqueIdentifier>{f60e3b6c-d99f-41e7-a920-b64a04984b21}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\Box2D\Box2D.h" />
@@ -157,6 +160,24 @@
     <ClInclude Include="..\..\Box2D\Dynamics\Joints\b2MotorJoint.h">
       <Filter>Dynamics\Joints</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2BuoyancyController.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2ConstantAccelController.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2ConstantForceController.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2Controller.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2GravityController.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\Box2D\Dynamics\Controllers\b2TensorDampingController.h">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\..\Box2D\Collision\b2BroadPhase.cpp">
@@ -293,6 +314,24 @@
     </ClCompile>
     <ClCompile Include="..\..\Box2D\Dynamics\Joints\b2MotorJoint.cpp">
       <Filter>Dynamics\Joints</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2BuoyancyController.cpp">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2ConstantAccelController.cpp">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2ConstantForceController.cpp">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2Controller.cpp">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2GravityController.cpp">
+      <Filter>Dynamics\Controllers</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\Box2D\Dynamics\Controllers\b2TensorDampingController.cpp">
+      <Filter>Dynamics\Controllers</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

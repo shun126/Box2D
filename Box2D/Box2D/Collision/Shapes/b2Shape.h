@@ -89,6 +89,15 @@ public:
 	/// @param density the density in kilograms per meter squared.
 	virtual void ComputeMass(b2MassData* massData, float32 density) const = 0;
 
+	/// Compute the volume and centroid of this shape intersected with a half plane
+	/// @param normal the surface normal
+	/// @param offset the surface offset along normal
+	/// @param density the fixture density
+	/// @param transform the shape transform
+	/// @param c returns the centroid
+	/// @return the total volume less than offset along normal
+	virtual float32 ComputeSubmergedArea(const b2Vec2& normal, const float32 offset, const float32 density, const b2Transform& transform, b2Vec2* c) const = 0;
+
 	Type m_type;
 	float32 m_radius;
 };

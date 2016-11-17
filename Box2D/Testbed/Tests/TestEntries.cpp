@@ -25,6 +25,7 @@
 #include "Breakable.h"
 #include "Bridge.h"
 #include "BulletTest.h"
+#include "Buoyancy.h"
 #include "Cantilever.h"
 #include "Car.h"
 #include "ContinuousTest.h"
@@ -125,5 +126,6 @@ TestEntry g_testEntries[] =
 	{"Sensor Test", SensorTest::Create},
 	{"Varying Friction", VaryingFriction::Create},
 	{"Add Pair Stress Test", AddPair::Create},
+	{"Buoyancy", Buoyancy::Create},
 	{NULL, NULL}
 };

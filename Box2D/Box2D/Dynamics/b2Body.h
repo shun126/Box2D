@@ -31,6 +31,7 @@ class b2World;
 struct b2FixtureDef;
 struct b2JointEdge;
 struct b2ContactEdge;
+struct b2ControllerEdge;
 
 /// The body type.
 /// static: zero mass, zero velocity, may be manually moved
@@ -370,6 +371,9 @@ public:
 	b2ContactEdge* GetContactList();
 	const b2ContactEdge* GetContactList() const;
 
+	/// Get the list of all controllers attached to this body.
+	b2ControllerEdge* GetControllerList();
+
 	/// Get the next body in the world's body list.
 	b2Body* GetNext();
 	const b2Body* GetNext() const;
@@ -394,7 +398,8 @@ private:
 	friend class b2ContactManager;
 	friend class b2ContactSolver;
 	friend class b2Contact;
-	
+	friend class b2Controller;
+
 	friend class b2DistanceJoint;
 	friend class b2FrictionJoint;
 	friend class b2GearJoint;
@@ -455,6 +460,8 @@ private:
 
 	b2JointEdge* m_jointList;
 	b2ContactEdge* m_contactList;
+
+	b2ControllerEdge* m_controllerList;
 
 	float32 m_mass, m_invMass;
 
@@ -716,6 +723,11 @@ inline b2ContactEdge* b2Body::GetContactList()
 inline const b2ContactEdge* b2Body::GetContactList() const
 {
 	return m_contactList;
+}
+
+inline b2ControllerEdge* b2Body::GetControllerList()
+{
+	return m_controllerList;
 }
 
 inline b2Body* b2Body::GetNext()
