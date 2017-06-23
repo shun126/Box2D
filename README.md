@@ -1,4 +1,4 @@
-##About
+# About
 Box2D is a 2D physics engine for games.
 
 For help with Box2D, please visit http://www.box2d.org. There is a forum there where you may post your questions.
@@ -17,3 +17,9 @@ Please do not submit pull requests with new features. Instead, please file an is
 Erin Catto
 http://www.box2d.org
 
+# About this fork
+
+- Add BuoyancyController
+- Change include path from absolute to relative
+
+Shun Moriya
